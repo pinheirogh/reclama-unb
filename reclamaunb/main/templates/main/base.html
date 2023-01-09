@@ -8,11 +8,15 @@
         <title>Reclama UnB</title>        
         <div class="container">
             <div class="row justify-content-center p-5 m-5">
-                <img src="{% static 'images/Logo.svg' %}" class="center w-25" alt="Logo Reclama UnB" >                    
+                <a href="{% url 'main:home' %}">
+                    <center>
+                        <img src="{% static 'images/Logo.svg' %}" class="center w-25" alt="Logo Reclama UnB" >
+                    </center>   
+                </a>                    
             </div>
         </div>    
     </head>
-    <body style="background-image: url('{% static "images/CircleBackground.svg" %}');">
+    <body style="background-image: url('{% static "images/CircleBackground.svg" %}')">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-3">
