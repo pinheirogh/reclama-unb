@@ -7,6 +7,9 @@ class ReportModel(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     #user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.title + ' (' + self.date.strftime('%d/%m/%Y') + ')'
+
     class Meta:
         abstract = True
 
@@ -34,3 +37,6 @@ class SecurityReportModel(ReportModel):
     )
     specific_location = models.CharField(max_length=100, choices=SPECIFIC_LOCATION_CHOICES)
     building = models.ForeignKey(AcademicUnitModel, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return super().__str__()
