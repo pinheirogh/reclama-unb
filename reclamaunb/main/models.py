@@ -10,7 +10,7 @@ class ReportModel(models.Model):
     class Meta:
         abstract = True
 
-class AcademicUnit(models.Model):
+class AcademicUnitModel(models.Model):
     name = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=10)
     email = models.EmailField()
@@ -33,4 +33,4 @@ class SecurityReportModel(ReportModel):
         ('Outro', 'Outro'),
     )
     specific_location = models.CharField(max_length=100, choices=SPECIFIC_LOCATION_CHOICES)
-    building = models.ForeignKey(AcademicUnit, on_delete=models.CASCADE)
+    building = models.ForeignKey(AcademicUnitModel, on_delete=models.CASCADE)
