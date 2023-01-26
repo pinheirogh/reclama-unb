@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}          
+    <div class="card py-3">
+        <div class="row justify-content-center"> 
+            {% for report in object_list %}
+                <div class="card my-2 p-2 w-75" style="background-color: #647AA3;">
+                    <div class="mt-2 py-4 py-lg-0 px-lg-4">
+                        <h6 class="card-title float-left" style="color: #ffffff;">{{report.title}}</h6>
+                        <img class="rounded img-fluid d-block w-100 fit-cover" style="height: 50px;" src="{% static 'images/Logo.svg' %}">
+                        <p class="card-text" style="color: #ffffff; font-size: small;">{{report.description}}</p>
+                        <p style="color: #ffffff;font-size: 8px;">({{report.date}})</p>
+                        <a href="{% url 'main:home' %}" class="stretched-link"></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>  
+{% endblock %}

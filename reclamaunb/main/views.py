@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView
 from .forms import SecurityReportForm
+from .models import SecurityReportModel
 
 # Create your views here.
 
@@ -21,3 +22,10 @@ class SecurityReportView(CreateView):
 
     def get_success_url(self):
         return reverse('main:home')
+
+class ReportListView(ListView):
+    template_name = 'main/report_list.html'
+    model = SecurityReportModel
+
+    def get_queryset(self):
+        return SecurityReportModel.objects.all()
