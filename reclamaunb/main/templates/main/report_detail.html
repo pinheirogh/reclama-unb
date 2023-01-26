@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="card text-center">
+        <div class="card-header">
+            {% if object.is_securityreport %}
+                Segurança
+            {% else %}
+                Infraestrutura
+            {% endif %}
+        </div>
+        <div class="card-body">
+            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h5 class="card-title">{{object.title}}</h5></li>
+                <li class="list-group-item">
+                    <p class="card-text">{{object.description}}</p>
+                </li>
+                <li class="list-group-item"><p style="font-size: 12px;">{{object.specific_location}} do(a) {{object.building}} ({{object.date}})</p></li>
+            </ul>
+            <a href="mailto:{{object.building.email}}?subject={{object.title}}&body={{object.description}}" class="btn btn-success">Pressionar os Responsáveis</a>
+        </div>
+        <div class="card-footer text-muted" style="font-size:12px;">
+            Ajude o autor desta reclamação a resolver o problema pressionando o botão acima para mandar um email com o conteúdo desta reclamação.
+        </div>
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView
 from .forms import SecurityReportForm
 from .models import SecurityReportModel
 
@@ -29,3 +29,12 @@ class ReportListView(ListView):
 
     def get_queryset(self):
         return SecurityReportModel.objects.all()
+
+class ReportDetailView(DetailView):
+    pk_url_kwarg = 'pk'
+    template_name = 'main/report_detail.html'
+    model = SecurityReportModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

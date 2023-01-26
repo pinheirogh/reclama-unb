@@ -40,3 +40,6 @@ class SecurityReportModel(ReportModel):
 
     def __str__(self) -> str:
         return super().__str__()
+
+    def is_securityreport(self):
+        return True
