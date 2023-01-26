@@ -2,19 +2,17 @@
 {% load static %}
 
 {% block content %}          
-    <div class="card py-3">
-        <div class="row justify-content-center"> 
-            {% for report in object_list %}
-                <div class="card my-2 p-2 w-75" style="background-color: #647AA3;">
-                    <div class="mt-2 py-4 py-lg-0 px-lg-4">
-                        <h6 class="card-title float-left" style="color: #ffffff;">{{report.title}}</h6>
-                        <img class="rounded img-fluid d-block w-100 fit-cover" style="height: 50px;" src="{% static 'images/Logo.svg' %}">
-                        <p class="card-text" style="color: #ffffff; font-size: small;">{{report.description}}</p>
-                        <p style="color: #ffffff;font-size: 8px;">({{report.date}})</p>
-                        <a href="{% url 'main:home' %}" class="stretched-link"></a>
-                    </div>
+
+    <div class="row justify-content-center"> 
+        {% for report in object_list %}
+            <div class="card shadow-sm rounded my-2 p-1 w-100" style="background-color: #95B2B0;">
+                <div class="mt-2 py-4 py-lg-0 px-lg-4">
+                    <h5 class="card-title float-left" style="color:#FFFFFF">{{report.title}}</h5>
+                    <p style="color:#334195;font-size: 10px;">{{report.specific_location}} do(a) {{report.building}}</p>
+                    <a href="{% url 'main:detalhe_reclamacao' report.id %}" class="stretched-link"></a>
                 </div>
-            {% endfor %}
-        </div>
-    </div>  
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
