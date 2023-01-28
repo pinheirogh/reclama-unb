@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="card shadow-sm rounded text-center my-2 p-1 w-100" style="background-color: #334195;">        
+        <div class="mt-2 py-4 py-lg-0 px-lg-4">
+            <h5 class="card-title" style="color: #ffffff;">Prédios Mais Inseguros (TOP #3)</h5>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        const ctx = document.getElementById('myChart');
+        Chart.defaults.color = "#ffffff";
+        new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{% for building in buildings %}'{{building}}',{% endfor %}],
+            datasets: [{
+                label: 'Número de reclamações',
+                data: [{% for num in num_reports %}{{num}},{% endfor %}],
+                borderWidth: 1,
+                backgroundColor: [
+                    '#FF3E03',
+                    '#FF7723',
+                    '#32AD25'
+                ],
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+    </script>
+{% endblock %}

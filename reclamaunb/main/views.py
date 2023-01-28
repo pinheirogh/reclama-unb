@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.db.models import Count
 from .forms import SecurityReportForm
-from .models import SecurityReportModel
+from .models import SecurityReportModel, AcademicUnitModel
+
 
 # Create your views here.
 
@@ -37,4 +39,20 @@ class ReportDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        return context
+
+class ReportChartsView(TemplateView):
+    template_name = 'main/report_charts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Get the names of the top 3 buildings with the most reports
+        context["buildings"] = [x.abbreviation for x in AcademicUnitModel.objects.annotate(num_reports=Count('securityreportmodel')).order_by('-num_reports')[:3]]
+
+        print(context["buildings"])
+
+        # Get the number of reports for each of the top 3 buildings
+        context["num_reports"] = [x.num_reports for x in AcademicUnitModel.objects.annotate(num_reports=Count('securityreportmodel')).order_by('-num_reports')[:3]]
+       
         return context
