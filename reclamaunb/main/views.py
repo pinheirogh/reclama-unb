@@ -50,8 +50,6 @@ class ReportChartsView(TemplateView):
         # Get the names of the top 3 buildings with the most reports
         context["buildings"] = [x.abbreviation for x in AcademicUnitModel.objects.annotate(num_reports=Count('securityreportmodel')).order_by('-num_reports')[:3]]
 
-        print(context["buildings"])
-
         # Get the number of reports for each of the top 3 buildings
         context["num_reports"] = [x.num_reports for x in AcademicUnitModel.objects.annotate(num_reports=Count('securityreportmodel')).order_by('-num_reports')[:3]]
        
