@@ -3,41 +3,43 @@
 {% load widget_tweaks %}
 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
+    <div class="card shadow-sm rounded p-4 w-100">
+        <form action="" method="POST">
+            {% csrf_token %}
 
-        <div class="form-group mb-3">
-            <label class="form-label" for="text-input">
-                Título da Reclamação:
-            </label>
-            {% render_field form.title class="border rounded-pill form-control" %}
-        </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="text-input">
+                    Título da Reclamação:
+                </label>
+                {% render_field form.title class="border rounded-pill form-control" style="color: #ffffff; background-color: #9eacc4" %}
+            </div>
 
-        <div class="form-group mb-3">
-            <label class="form-label" for="textarea-input">
-                Descrição do Fato:
-            </label>
-            {% render_field form.description class="border rounded form-control" %}
-        </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="textarea-input">
+                    Descrição do Fato:
+                </label>
+                {% render_field form.description class="border rounded form-control" style="color: #ffffff; background-color: #9eacc4" %}
+            </div>
 
-        <div class="form-group mb-3">
-            <label class="form-label" for="textarea-input">
-                Localização Específica:
-            </label>
-            {% render_field form.specific_location class="btn btn-primary dropdown-toggle w-100" style="background-color: #4244a4; border-style: none;" %} 
-        </div>
-         
-        <div class="form-group mb-3">
-            <label class="form-label" for="textarea-input">
-                Prédio:
-            </label>
-            {% render_field form.building class="btn btn-primary dropdown-toggle w-100" style="background-color: #4244a4; border-style: none;" %}
-        </div>                      
- 
-        <div class="form-group my-5">
-            <a class="btn btn-outline-primary btn-lg" style="border-color: #4244a4" role="button" href="{% url 'main:home' %}">Cancelar</a>
-            <input type="submit" class="btn btn-primary btn-lg float-end" style="background-color: #4244a4; border-style: none;" value="Enviar">
-        </div>
-               
-    </form>
+            <div class="form-group mb-3">
+                <label class="form-label" for="textarea-input">
+                    Localização Específica:
+                </label>
+                {% render_field form.specific_location class="btn btn-primary dropdown-toggle w-100" style="background-color: #4244a4; border-style: none;" %} 
+            </div>
+            
+            <div class="form-group mb-3">
+                <label class="form-label" for="textarea-input">
+                    Prédio:
+                </label>
+                {% render_field form.building class="btn btn-primary dropdown-toggle w-100" style="background-color: #4244a4; border-style: none;" %}
+            </div>                      
+    
+            <div class="form-group mt-5 mb-4">
+                <a class="btn btn-outline-secondary" role="button" href="{% url 'main:home' %}">Cancelar</a>
+                <input type="submit" class="btn btn-primary float-end" style="background-color: #4244a4; border-style: none;" value="Enviar">
+            </div>
+                
+        </form>
+    </div>
 {% endblock %}
